@@ -1,8 +1,8 @@
-# ToothSeg: A Self-Correcting Deep Learning Approach for Robust Tooth Instance Segmentation and Numbering in CBCT
+# ToothSeg: Robust Tooth Instance Segmentation and Numbering in CBCT using Deep Learning and Self-Correction
 
 ## Introduction
 
-This is the official code of ToothSeg (Link to Paper will follow).
+This is the official code of ToothSeg.
 ToothSeg is a fully automated, dual-branch deep learning framework designed for multiclass tooth instance segmentation in CBCT scans. 
 It addresses the variability in examiner diagnoses and generalization challenges across datasets by integrating instance and semantic segmentation, thus improving performance and robustness. 
 The framework excels in detecting and labeling individual tooth instances across diverse dental conditions.
@@ -12,7 +12,7 @@ The framework excels in detecting and labeling individual tooth instances across
 
 ## Installation
 All you need is a working [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/master) setup!
-Afterward, install the ToothSeg Repository by:
+Afterward, install the ToothSeg repository by:
 ```bash
 pip install -e .
 ```
@@ -27,7 +27,7 @@ You need the following three datasets whereby all datasets need to be in the [nn
 - **Semantic Branch**: Dataset with each tooth as a separate class and with spacing 0.3x0.3x0.3
 - **Instance Branch**: Dataset in the Border-core format and spacing 0.2x0.2x0.2
 
-### Inhouse Dataset
+### In-house Dataset
 
 <details><summary>Click to expand/collapse</summary>
 <p>
@@ -84,7 +84,7 @@ Process the Data by adapting the [toothfairy2.py](toothseg/datasets/toothfairy2/
    
 ## Training
 
-### Inhouse dataset
+### In-house dataset
 The inhouse dataset is split into train and test via the imagesTr and imagesTs folders. We train on all training cases 
 ```bash
 # semantic branch
@@ -190,11 +190,12 @@ Afterwards, follow the instructions in the Inference section.
 ## Citation
 
 ```
-@article{toothseg,
-  title={ToothSeg: A Self-Correcting Deep Learning Approach for Robust Tooth Instance Segmentation and Numbering in CBCT}
-  author={van Nistelrooij, Niels and Kr{\"a}mer, Lars and Kempers, Steven and Beyer, Michel and Ambrogioni, Luca and Bolelli, Federico and Xi, Tong and Berg{\'e}, Stefaan and Heiland, Max and Maier-Hein, Klaus H. and Vinayahalingam, Shankeeth and Isensee, Fabian},
+@ARTICLE{toothseg,
+  author={van Nistelrooij, Niels and Krämer, Lars and Kempers, Steven and Beyer, Michel and Bolelli, Federico and Xi, Tong and Bergé, Stefaan and Heiland, Max and Maier-Hein, Klaus H. and Vinayahalingam, Shankeeth and Isensee, Fabian},
+  journal={IEEE Journal of Biomedical and Health Informatics}, 
+  title={ToothSeg: Robust Tooth Instance Segmentation and Numbering in CBCT using Deep Learning and Self-Correction}, 
   year={2025},
-  note={Submitted to IEEE Transactions on Medical Imaging}
+  doi={10.1109/JBHI.2025.3650444}
 }
 ```
 
