@@ -9,6 +9,36 @@ The framework excels in detecting and labeling individual tooth instances across
 
 ![Overview_Figure](figures/Overview_Figure.png)
 
+---
+
+## Quick Start: Using Pre-trained Models
+
+**想直接使用模型进行分割？不需要迁移学习！/ Want to use the model directly? No transfer learning needed!**
+
+See our comprehensive [**USAGE GUIDE**](USAGE_GUIDE.md) for:
+- ✅ When you **DON'T need** transfer learning (most cases!)
+- ⚠️ When you **MAY need** transfer learning
+- 🚀 Easy-to-use Python inference script
+- 📖 Step-by-step instructions in English and Chinese
+- ❓ FAQ and troubleshooting
+
+### Ultra Quick Start
+
+1. **Download pre-trained models** from [Zenodo](https://zenodo.org/records/14893540)
+2. **Place models** in your `nnUNet_results` folder
+3. **Prepare your data** in `imagesTs` folder (NIfTI format, files ending with `_0000.nii.gz`)
+4. **Run inference**:
+
+```bash
+python toothseg/inference/simple_inference.py \
+    --input_dir /path/to/your_data \
+    --output_dir /path/to/output \
+    --gpu_id 0
+```
+
+That's it! No training, no transfer learning needed for most cases. See [USAGE_GUIDE.md](USAGE_GUIDE.md) for details.
+
+---
 
 ## Installation
 All you need is a working [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/master) setup!
@@ -19,6 +49,8 @@ pip install -e .
 
 
 ## Dataset Preparation
+
+> **Note**: This section is **ONLY for training/fine-tuning** the model. If you just want to use the pre-trained model for inference, skip to the [Inference](#inference) section or see the [USAGE_GUIDE.md](USAGE_GUIDE.md).
 
 The goal of this stage is to prepare two datasets that fulfill the specific requirements for training the semantic and instance branches of the model.
 This must also be respected if you want to train on your own data.
@@ -59,6 +91,9 @@ Process the Data by adapting the [toothfairy2.py](toothseg/datasets/toothfairy2/
 
 
 ## Preprocessing
+
+> **Note**: This section is **ONLY for training/fine-tuning** the model. Skip this if you're using pre-trained models.
+
 1. Run nnUNet's fingerprint extraction and experiment planing:
    ```bash
    # For the Inhouse Dataset
@@ -81,8 +116,10 @@ Process the Data by adapting the [toothfairy2.py](toothseg/datasets/toothfairy2/
    nnUNetv2_preprocess -d 121 -c 3d_fullres_resample_torch_256_bs8 -np 64
    nnUNetv2_preprocess -d 123 -c 3d_fullres_resample_torch_192_bs8 -np 64
    ```
-   
+
 ## Training
+
+> **Note**: This section is **ONLY for training from scratch or fine-tuning** the model. If you just want to use the pre-trained model, skip to the [Inference](#inference) section. For information on when you need fine-tuning (transfer learning), see [USAGE_GUIDE.md](USAGE_GUIDE.md).
 
 ### In-house dataset
 The inhouse dataset is split into train and test via the imagesTr and imagesTs folders. We train on all training cases 
